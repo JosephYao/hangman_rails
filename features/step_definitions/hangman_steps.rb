@@ -9,14 +9,14 @@ Then(/^tries is (\d+)$/) do |tries|
 	expect(page).to have_content(tries)
 end
 
-Then(/^length is (\d+)$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^length is (\d+)$/) do |length|
+	expect(page).to have_content(length)
 end
 
-Then(/^used is "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^used is "(.*?)"$/) do |used|
+	expect(page).to have_content(used)
 end
 
-Then(/^Discovered is "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^Discovered is "(.*?)"$/) do |discovered|
+	expect(page).to have_content(discovered)
 end
