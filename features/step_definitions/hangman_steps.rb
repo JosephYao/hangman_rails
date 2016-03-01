@@ -1,8 +1,9 @@
-Given(/^a word "(.*?)"$/) do |arg1|
+Given(/^a word "(.*?)"$/) do |word|
+	@word = word
 end
 
 When(/^game start$/) do
-	visit "http://localhost:3000/game/index"
+	visit "http://localhost:3000/game/index?word=#{@word}"
 end
 
 Then(/^tries is (\d+)$/) do |tries|
