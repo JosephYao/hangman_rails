@@ -37,6 +37,8 @@ group :development, :test do
   gem 'byebug'
   gem 'cucumber-rails'
   gem 'database_cleaner'
+  gem 'capybara'
+  gem 'rspec'
 end
 
 group :development do
