@@ -8,4 +8,8 @@ class Hangman
 		@word.length
 	end
 
+	def tries
+		12
+	end
+
 end
