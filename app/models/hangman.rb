@@ -1,7 +1,11 @@
 class Hangman 
 	
+	def initialize(word)
+		@word = word
+	end
+
 	def length
-		6
+		@word.length
 	end
 
 end
