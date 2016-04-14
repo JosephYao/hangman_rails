@@ -12,4 +12,7 @@ class Hangman
 		12
 	end
 
+	def used
+		'AEIOU'
+	end
 end

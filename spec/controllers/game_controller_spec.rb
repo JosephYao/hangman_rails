@@ -13,6 +13,7 @@ RSpec.describe GameController, type: :controller do
 			allow(Hangman).to receive(:new).and_return(hangman)
 			allow(hangman).to receive(:length).and_return(length_of_word)
 			allow(hangman).to receive(:tries).and_return(max_tries)
+			allow(hangman).to receive(:used).and_return('used')
 
 			get :index, {word: word_to_guess}
 
@@ -20,6 +21,17 @@ RSpec.describe GameController, type: :controller do
 			expect(assigns(:tries)).to eq(max_tries)
 		end
 	  
+		it "response used to view in upper case" do
+			hangman = double()
+			allow(Hangman).to receive(:new).and_return(hangman)
+			allow(hangman).to receive(:length).and_return(length_of_word)
+			allow(hangman).to receive(:tries).and_return(max_tries)
+			allow(hangman).to receive(:used).and_return('used')
+
+			get :index, {word: word_to_guess}
+
+			expect(assigns(:used)).to eq('USED')
+		end
 	end
 
 end
