@@ -1,4 +1,4 @@
-Given(/^a word "(.*?)"$/) do |word|
+Given(/^a word '(.*?)'$/) do |word|
 	@word = word
 end
 
@@ -20,4 +20,13 @@ end
 
 Then(/^Discovered is "(.*?)"$/) do |discovered|
 	expect(page).to have_content(discovered)
+end
+
+Given(/^start game with word '(.*?)'$/) do |arg1|
+  step "a word '#{arg1}'"
+  step 'game start'
+end
+
+When(/^type an incorrect letter "(.*?)"$/) do |arg1|
+  page.click_button(arg1)
 end
