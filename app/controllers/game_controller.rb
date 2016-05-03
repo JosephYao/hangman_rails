@@ -7,4 +7,8 @@ class GameController < ApplicationController
   	@used = hangman.used().upcase()
 
   end
+
+  def type
+    redirect_to :back
+  end
 end

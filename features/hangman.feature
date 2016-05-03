@@ -11,7 +11,7 @@ Scenario: Start game
 @wip
 Scenario: type an incorrect letter
     Given start game with word 'rework'
-    When type an incorrect letter "z"
+    When type an incorrect letter "Z"
     Then tries is 11
     And length is 6
     And used is "AEIOU"
