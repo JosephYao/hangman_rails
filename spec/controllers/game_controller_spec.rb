@@ -38,4 +38,15 @@ RSpec.describe GameController, type: :controller do
 		end
 	end
 
+  describe "type" do
+    it "should call hangman type" do
+			hangman = spy 'hangman'
+			allow(Hangman).to receive(:new).and_return(hangman)
+      session[:word] = 'rework'
+
+      post :type, {char: 'z'}
+
+      expect(hangman).to have_received(:type).with('z')
+    end
+  end
 end

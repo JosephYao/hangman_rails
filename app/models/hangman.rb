@@ -15,4 +15,7 @@ class Hangman
 	def used
 		'AEIOU'
 	end
+
+  def type char
+  end
 end
