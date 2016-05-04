@@ -3,4 +3,4 @@
 <p>Length is <%=@length%></p>
 <p>Used is <%=@used%></p>
 <p>Discovered is _E_O__</p>
-<%= button_to 'Z', { controller: "game", action: "type", char: "z" } %>
+<%= button_to 'Z', { controller: "game", action: "type", char: "z", word: @word} %>

@@ -42,11 +42,15 @@ RSpec.describe GameController, type: :controller do
     it "should call hangman type" do
 			hangman = spy 'hangman'
 			allow(Hangman).to receive(:new).and_return(hangman)
-      session[:word] = 'rework'
 
-      post :type, {char: 'z'}
+      post :type, {char: 'z', word: 'rework'}
 
       expect(hangman).to have_received(:type).with('z')
+    end
+    it "should response word" do
+      post :type, {char: 'z', word: 'rework'}     
+      redirect_params = Rack::Utils.parse_query(URI.parse(response.location).query)
+			expect(redirect_params).to eq('word' => 'rework')
     end
   end
 end
