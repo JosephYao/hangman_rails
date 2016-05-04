@@ -10,7 +10,8 @@ class GameController < ApplicationController
   end
 
   def type
-    Hangman.new('').type(params['char'])
-    redirect_to action: 'index', word: params['word']
+    hangman = Hangman.new(params[:word])
+    hangman.type(params['char'])
+    redirect_to action: 'index', word: hangman.word, tries: hangman.tries
   end
 end

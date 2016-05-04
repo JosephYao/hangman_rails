@@ -31,26 +31,50 @@ RSpec.describe GameController, type: :controller do
 			get :index, {word: word_to_guess}
 		end
 
-		def stub_hangman
-			hangman = Hangman.new '' 
-			allow(Hangman).to receive(:new).and_return(hangman)
-			return hangman
-		end
 	end
+
+  def stub_hangman
+    hangman = Hangman.new 'rework' 
+    allow(Hangman).to receive(:new).and_return(hangman)
+    return hangman
+  end
+
+  def spy_hangman
+			hangman = spy 'hangman'
+			allow(Hangman).to receive(:new).and_return(hangman)
+      hangman
+  end
 
   describe "type" do
     it "should call hangman type" do
-			hangman = spy 'hangman'
-			allow(Hangman).to receive(:new).and_return(hangman)
+			hangman = spy_hangman
 
-      post :type, {char: 'z', word: 'rework'}
+      type_not_contained_char
 
       expect(hangman).to have_received(:type).with('z')
     end
-    it "should response word" do
-      post :type, {char: 'z', word: 'rework'}     
+
+    it "should response hangman" do
+			hangman = stub_hangman
+
+      type_not_contained_char
+
+      expect_redirect_params_to_eq hangman
+    end
+
+    def type_not_contained_char
+      post :type, {
+        char: 'z',
+        word: 'rework'
+      }
+    end
+
+    def expect_redirect_params_to_eq hangman
       redirect_params = Rack::Utils.parse_query(URI.parse(response.location).query)
-			expect(redirect_params).to eq('word' => 'rework')
+			expect(redirect_params).to eq(
+        'word' => hangman.word,
+        'tries' => hangman.tries.to_s
+      )
     end
   end
 end
