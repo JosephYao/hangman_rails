@@ -73,7 +73,8 @@ RSpec.describe GameController, type: :controller do
       redirect_params = Rack::Utils.parse_query(URI.parse(response.location).query)
 			expect(redirect_params).to eq(
         'word' => hangman.word,
-        'tries' => hangman.tries.to_s
+        'tries' => hangman.tries.to_s,
+        'used' => hangman.used
       )
     end
   end

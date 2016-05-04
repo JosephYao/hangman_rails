@@ -1,5 +1,7 @@
 RSpec.describe Hangman do
 
+  let(:hangman) { Hangman.new('word') }
+
 	describe "length" do
 	  
 		it "length of word" do
@@ -12,13 +14,11 @@ RSpec.describe Hangman do
 
   describe "tries" do
 
-    let(:hangman) { Hangman.new('word') }
-
     it "tries is 12 when game start" do
       expect(hangman.tries).to eq(12)
     end
 
-    it "tries decrease one when type a not contained char" do
+    it "tries decrease one when type a excluded char" do
       hangman.type('z')
 
       expect(hangman.tries).to eq(11)
@@ -28,16 +28,36 @@ RSpec.describe Hangman do
 
   describe "construction" do
 
-    it "construct with no tries" do
-      hangman = Hangman.create('word', 0)
+    it "construct with no tries and used" do
+      hangman = Hangman.create('word', 0, '')
 
       expect(hangman.tries).to eq(12)
+      expect(hangman.used).to eq('aeiou')
     end
 
-    it "construct with available tries" do
-      hangman = Hangman.create('word', 11)
+    it "construct with available tries and used" do
+      hangman = Hangman.create('word', 11, 'aeiouz')
 
       expect(hangman.tries).to eq(11)
+      expect(hangman.used).to eq('aeiouz')
+    end
+
+  end
+
+  describe "used" do
+
+    it "used is aeiou when game starts" do
+
+      expect(hangman.used).to eq 'aeiou'
+
+    end
+
+    it "used should append the excluded char" do
+
+      hangman.type('z')
+
+      expect(hangman.used).to eq('aeiouz')
+
     end
 
   end

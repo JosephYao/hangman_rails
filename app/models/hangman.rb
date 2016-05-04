@@ -1,15 +1,16 @@
 class Hangman 
 	
-	def initialize(word, tries = 12)
+	def initialize(word, tries = 12, used = 'aeiou')
 		@word = word
     @tries = tries
+    @used = used
 	end
 
-  def self.create word, tries
+  def self.create word, tries, used
     if tries == 0
       Hangman.new(word)
     else
-      Hangman.new(word, tries)
+      Hangman.new(word, tries, used)
     end
   end
 
@@ -26,10 +27,11 @@ class Hangman
 	end
 
 	def used
-		'AEIOU'
+		@used
 	end
 
   def type char
     @tries -= 1
+    @used += char
   end
 end
