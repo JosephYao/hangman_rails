@@ -8,11 +8,10 @@ Scenario: Start game
 	And used is "AEIOU"
 	And Discovered is "_E_O__"
 
-@wip
 Scenario: type an incorrect letter
     Given start game with word 'rework'
     When type an incorrect letter "Z"
     Then length is 6
     And tries is 11
-    And used is "AEIOU"
+    And used is "AEIOUZ"
     And Discovered is "_E_O__"

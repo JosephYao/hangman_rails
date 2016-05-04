@@ -2,7 +2,7 @@ class GameController < ApplicationController
   def index
 
     @word = params[:word]
-  	hangman = Hangman.new(@word)
+    hangman = Hangman.create(@word, params[:tries].to_i)
   	@length = hangman.length()
   	@tries = hangman.tries()
   	@used = hangman.used().upcase()
